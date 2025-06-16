@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Chatbase embed (loads after the page finishes) -->
+    <script>
+      (function () {
+        if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+          window.chatbase = (...args) => {
+            (window.chatbase.q = window.chatbase.q || []).push(args);
+          };
+          window.chatbase = new Proxy(window.chatbase, {
+            get(target, prop) {
+              if (prop === "q") return target.q;
+              return (...args) => target(prop, ...args);
+            },
+          });
+        }
+        const loadChat = () => {
+          const s = document.createElement("script");
+          s.src = "https://www.chatbase.co/embed.min.js";
+          s.id = "YTlIP94v5Q4szNa4THbnN";
+          s.domain = "www.chatbase.co";
+          document.body.appendChild(s);
+        };
+        if (document.readyState === "complete") loadChat();
+        else window.addEventListener("load", loadChat);
+      })();
+    </script>
+
+    <!-- Vite injects the correct hashed file at build time -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -34,12 +34,12 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <HashRouter basename="/">
+    <BrowserRouter basename="/">
       <ErrorBoundary>
         <AppContextProvider>
           <App />
         </AppContextProvider>
       </ErrorBoundary>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>
 );
