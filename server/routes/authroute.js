@@ -15,7 +15,6 @@ router.post("/community", authMiddleware , createCommunityPost);
 router.post("/testing", authMiddleware, (req, res) => {
     res.json({ message: "Testing route is working!" });
 });
-//review 
+//review
 router.post("/createReview", authMiddleware, createReview);
 module.exports = router;
-
